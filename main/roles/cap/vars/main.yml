@@ -1,0 +1,5 @@
+---
+# vars file for cap
+
+update_username: ansible_user_01
+update_password: "{{ 'passwd' | password_hash('sha512') }}"

@@ -1,0 +1,4 @@
+- name: Change auth plan
+  hosts: tc.bai-su-root
+  roles:
+    - role: cap

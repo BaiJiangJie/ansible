@@ -1,0 +1,32 @@
+- name: Create user ansible_user_01  # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html#plugins-in-ansible-builtin
+  hosts: tc.bai
+  tasks:
+    - name: Ping
+      ansible.builtin.ping:
+    - name: Create user
+      ansible.builtin.user:
+        name: ansible_user_01
+        password: "{{ 'passwd' | password_hash('sha512') }}"
+        state: present
+        update_password: always
+    - name: Whoami
+      ansible.builtin.shell: whoami
+      register: who
+    - name: Show
+      debug:
+        var: who.stdout
+        verbosity: 0
+
+- name: Test user ansible_user_01
+  hosts: tc.ansible_user_01
+  tasks:
+    - name: Ping
+      ansible.builtin.ping:
+    - name: Whoami
+      ansible.builtin.command:
+        cmd: whoami
+      register: who
+    - name: Show
+      debug:
+        var: who.stdout
+        verbosity: 0

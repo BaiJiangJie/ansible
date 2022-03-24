@@ -1,0 +1,5 @@
+#ansible-playbook ./playbooks/playbook.yml -i ./inventories/hosts.yml
+ansible-playbook ./playbooks/playbook_cap.yml -i ./inventories/hosts.yml
+
+# Generate encrypt password
+# python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"

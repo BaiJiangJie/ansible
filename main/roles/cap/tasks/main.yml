@@ -1,0 +1,21 @@
+---
+# tasks file for cap
+- name: Ping host
+  ansible.builtin.ping:
+
+- name: Create user
+  ansible.builtin.user:
+    name: "{{ update_username }}"
+    password: "{{ update_password }}"
+    state: present
+    update_password: always
+
+- name: Execute command whoami
+  ansible.builtin.shell:
+    cmd: whoami
+  register: whoami_result
+
+- name: Echo whoami result
+  ansible.builtin.debug:
+    var: whoami_result.stdout
+    verbosity: 0
